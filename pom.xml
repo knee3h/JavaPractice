@@ -165,11 +165,11 @@
 		</dependency>
 
 		<!-- shardbatis -->
-		<dependency>
-			<groupId>org.shardbatis</groupId>
-			<artifactId>shardbatis</artifactId>
-			<version>2.0.0B</version>
-		</dependency>
+<!--		<dependency>-->
+<!--			<groupId>org.shardbatis</groupId>-->
+<!--			<artifactId>shardbatis</artifactId>-->
+<!--			<version>2.0.0C</version>-->
+<!--		</dependency>-->
 		<dependency>
 			<groupId>net.sf.jsqlparser</groupId>
 			<artifactId>jsqlparser</artifactId>

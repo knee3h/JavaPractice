@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.redisson.Redisson;
 import org.redisson.api.RCountDownLatch;
 import org.redisson.api.RedissonClient;
+import org.redisson.config.Config;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -15,15 +16,20 @@ public class CountDownLatchExample {
 
     public static void main(String[] args) throws Exception {
 
+        Config config = new Config();
+        config.useSingleServer().setAddress("redis://127.0.0.1:6379").setDatabase(0);
+        // config.useClusterServers().addNodeAddress("redis://127.0.0.1:6379");
+
         // connects to 127.0.0.1:6379 by default
         log.info("init redisson client instance");
-        RedissonClient redisson = Redisson.create();
+        RedissonClient redissonClient = Redisson.create(config);
+        redissonClient.getKeys().getKeys().forEach(key -> System.out.println(key));
         log.info("redisson client instance finish");
 
         ExecutorService exec = Executors.newFixedThreadPool(6);
 
         // 分布式闭锁
-        final RCountDownLatch latch = redisson.getCountDownLatch("latch1");
+        final RCountDownLatch latch = redissonClient.getCountDownLatch("latch1");
         latch.trySetCount(threadNumTotal);
 
 
@@ -42,7 +48,7 @@ public class CountDownLatchExample {
         latch.await();
         log.info("all threads finish");
         exec.shutdown();
-        redisson.shutdown();
+        redissonClient.shutdown();
 //        exec.awaitTermination(10, TimeUnit.SECONDS);
     }
 
