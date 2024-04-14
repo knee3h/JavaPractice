@@ -1,0 +1,18 @@
+
+server:
+  port: 8826
+logging:
+  config: classpath:logback-spring.xml
+
+#hystrix
+hystrix:
+  timeoutInMillions: 3000
+
+spring:
+  profiles:
+    active: dev
+
+mybatis:
+  mapper-locations: mappers/*.xml
+mybatisLog:
+  mapper-locations: mappersLog/*.xml

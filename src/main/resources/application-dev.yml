@@ -1,0 +1,34 @@
+## datasource #
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/test?characterEncoding=UTF-8&serverTimezone=GMT+8
+    username: root
+    password: admin+517
+#   rabbitmq
+  rabbitmq:
+    host: 192.168.199.23
+    port: 5672
+    username: jimin
+    password: jimin
+  kafaka:
+#    代理地址，可以多个
+    bootstrap-servers: 192.168.199.23:9092
+    consumer:
+      #指定默认消费者group id
+      group-id: test
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringSerializer
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-deserializer: org.apache.kafka.common.serialization.StringSerializer
+
+# jedis
+jedis:
+  pool:
+    host: 192.168.199.23
+    port: 6379
+    config:
+      maxTotal: 100
+      maxIdle: 10
+      maxWaitMillis: 100000
