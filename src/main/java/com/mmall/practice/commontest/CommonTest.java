@@ -1,4 +1,4 @@
-package com.mmall.practice;
+package com.mmall.practice.commontest;
 
 import lombok.extern.slf4j.Slf4j;
 
