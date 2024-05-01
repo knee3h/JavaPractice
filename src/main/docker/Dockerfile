@@ -1,7 +1,5 @@
-FROM openjdk:8-jdk-alpine
-
-VOLUME /tmp
-
-ADD practice-0.0.1-SNAPSHOT.jar app.jar
-
-ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
+FROM java
+WORKDIR /root
+ADD course01.jar .
+EXPOSE 8080
+ENTRYPOINT ["java", "-jar", "course01.jar"]
